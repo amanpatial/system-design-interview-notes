@@ -81,13 +81,27 @@ To improve availability: increase MTBF (redundancy, better code, proactive maint
 
 **Q: A system has 99.9% availability. A critical dependency has 99.5% availability. What's the theoretical combined availability? How would you improve it?**
 
-**A:** For series dependency: combined = 0.999 × 0.995 ≈ 99.4%. The weaker link dominates. Improvements: (1) Redundant dependencies (parallel)—if either works, system works; combined availability increases. (2) Circuit breaker + fallback to degrade gracefully instead of failing. (3) Caching to reduce dependency on the weaker service. (4) Upgrade the dependency's SLA or replace it.
+**A:** For series dependency: combined = 0.999 × 0.995 ≈ 99.4%. The weaker link dominates. Improvements:
+
+- (1) Redundant dependencies (parallel)—if either works, system works; combined availability increases.
+- (2) Circuit breaker + fallback to degrade gracefully instead of failing.
+- (3) Caching to reduce dependency on the weaker service.
+- (4) Upgrade the dependency's SLA or replace it.
 
 ---
 
 **Q: Design a fault-tolerant system that maintains 99.99% availability for a read-heavy API. Walk through your failure scenarios and mitigations.**
 
-**A:** Key design elements: (1) Multi-AZ deployment with redundant instances in each AZ. (2) Database: primary-replica with automatic failover, read replicas for scaling reads. (3) Caching: Redis cluster with replication; cache-aside with fallback to DB on cache miss. (4) Load balancer with health checks; remove unhealthy instances. (5) Circuit breaker for downstream dependencies. (6) Idempotent APIs for safe retries. Failure scenarios: AZ failure → traffic shifts to other AZs; DB failover → replicas promote; cache failure → degrade to DB; dependency failure → circuit breaker prevents cascade.
+**A:** Key design elements:
+
+- (1) Multi-AZ deployment with redundant instances in each AZ.
+- (2) Database: primary-replica with automatic failover, read replicas for scaling reads.
+- (3) Caching: Redis cluster with replication; cache-aside with fallback to DB on cache miss.
+- (4) Load balancer with health checks; remove unhealthy instances.
+- (5) Circuit breaker for downstream dependencies.
+- (6) Idempotent APIs for safe retries.
+
+Failure scenarios: AZ failure → traffic shifts to other AZs; DB failover → replicas promote; cache failure → degrade to DB; dependency failure → circuit breaker prevents cascade.
 
 ---
 

@@ -22,7 +22,22 @@ Eviction policies decide what to remove when the cache is full. LRU, LFU, and TT
 
 **Q: A cache has 90% hit rate but still high DB load. Diagnose and propose solutions.**
 
-**A:** Possible causes: (1) 10% miss handling high traffic—even 1% of large traffic is big. (2) Popular keys evicted—hot keys not fitting in cache. (3) Cache key design—too specific, low reuse (e.g., per-user keys for shared data). (4) Thundering herd on miss. (5) Expensive queries on miss—single miss triggers heavy query. Solutions: (1) Increase cache size or optimize eviction for hot keys. (2) Cache at coarser granularity where possible. (3) Request coalescing, lock, or stale-while-revalidate. (4) Pre-warm cache for known hot keys. (5) Optimize DB queries and add indexes. (6) Add read replicas for cache miss traffic.
+**A:** Possible causes:
+
+- (1) 10% miss handling high traffic—even 1% of large traffic is big.
+- (2) Popular keys evicted—hot keys not fitting in cache.
+- (3) Cache key design—too specific, low reuse (e.g., per-user keys for shared data).
+- (4) Thundering herd on miss.
+- (5) Expensive queries on miss—single miss triggers heavy query.
+
+Solutions:
+
+- (1) Increase cache size or optimize eviction for hot keys.
+- (2) Cache at coarser granularity where possible.
+- (3) Request coalescing, lock, or stale-while-revalidate.
+- (4) Pre-warm cache for known hot keys.
+- (5) Optimize DB queries and add indexes.
+- (6) Add read replicas for cache miss traffic.
 
 ---
 

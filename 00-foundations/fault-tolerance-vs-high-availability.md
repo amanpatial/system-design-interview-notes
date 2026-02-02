@@ -28,7 +28,16 @@ You can have HA without full fault tolerance (system stays up but returns errors
 
 **Q: Design a fault-tolerant system that maintains 99.99% availability for a read-heavy API. Walk through your failure scenarios and mitigations.**
 
-**A:** Key design elements: (1) Multi-AZ deployment with redundant instances in each AZ. (2) Database: primary-replica with automatic failover, read replicas for scaling reads. (3) Caching: Redis cluster with replication; cache-aside with fallback to DB on cache miss. (4) Load balancer with health checks; remove unhealthy instances. (5) Circuit breaker for downstream dependencies. (6) Idempotent APIs for safe retries. Failure scenarios: AZ failure → traffic shifts to other AZs; DB failover → replicas promote; cache failure → degrade to DB; dependency failure → circuit breaker prevents cascade.
+**A:** Key design elements:
+
+- (1) Multi-AZ deployment with redundant instances in each AZ.
+- (2) Database: primary-replica with automatic failover, read replicas for scaling reads.
+- (3) Caching: Redis cluster with replication; cache-aside with fallback to DB on cache miss.
+- (4) Load balancer with health checks; remove unhealthy instances.
+- (5) Circuit breaker for downstream dependencies.
+- (6) Idempotent APIs for safe retries.
+
+Failure scenarios: AZ failure → traffic shifts to other AZs; DB failover → replicas promote; cache failure → degrade to DB; dependency failure → circuit breaker prevents cascade.
 
 ---
 

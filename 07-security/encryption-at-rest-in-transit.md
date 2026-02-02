@@ -23,7 +23,20 @@
 
 **Q: Design a zero-trust API architecture. Assume no implicit trust based on network position.**
 
-**A:** Principles: (1) Verify every request—auth on every call, no "internal" bypass. (2) Least privilege—grant minimum access. (3) Assume breach—segment, encrypt, audit. Implementation: (1) mTLS or JWT for service-to-service. (2) API gateway validates all requests. (3) Policy engine (e.g., OPA) for fine-grained AuthZ. (4) Encrypt everything; no trusted network. (5) Audit logs for all access. (6) Short-lived credentials, no long-lived keys.
+**A:** Principles:
+
+- (1) Verify every request—auth on every call, no "internal" bypass.
+- (2) Least privilege—grant minimum access.
+- (3) Assume breach—segment, encrypt, audit.
+
+Implementation:
+
+- (1) mTLS or JWT for service-to-service.
+- (2) API gateway validates all requests.
+- (3) Policy engine (e.g., OPA) for fine-grained AuthZ.
+- (4) Encrypt everything; no trusted network.
+- (5) Audit logs for all access.
+- (6) Short-lived credentials, no long-lived keys.
 
 ---
 

@@ -16,7 +16,22 @@
 
 **Q: Design a disaster recovery plan. What are the key steps and how do you test it?**
 
-**A:** Steps: (1) Define RTO/RPO. (2) Backup strategy: frequency, retention, encryption. (3) Replication: sync/async to DR region. (4) Runbooks: failover steps, contacts. (5) Test regularly: DR drill (quarterly). Test: (1) Failover to DR; verify app and data. (2) Failback. (3) Document lessons. (4) Chaos engineering for practice. Automation reduces human error during real DR.
+**A:** Steps:
+
+- (1) Define RTO/RPO.
+- (2) Backup strategy: frequency, retention, encryption.
+- (3) Replication: sync/async to DR region.
+- (4) Runbooks: failover steps, contacts.
+- (5) Test regularly: DR drill (quarterly).
+
+Test:
+
+- (1) Failover to DR; verify app and data.
+- (2) Failback.
+- (3) Document lessons.
+- (4) Chaos engineering for practice.
+
+Automation reduces human error during real DR.
 
 ---
 

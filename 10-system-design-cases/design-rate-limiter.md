@@ -10,7 +10,14 @@ A rate limiter restricts request frequency per client. Considerations: algorithm
 
 **Q: Design a rate limiter. What algorithms can you use?**
 
-**A:** Algorithms: (1) Fixed window: count per window; simple, boundary issue. (2) Sliding window: smooth, more accurate. (3) Token bucket: allow bursts. (4) Leaky bucket: smooth output. Storage: in-memory for single node; Redis for distributed. Key: user_id or IP. Implementation: Redis INCR with TTL, or sliding window log. Return 429 with Retry-After.
+**A:** Algorithms:
+
+- (1) Fixed window: count per window; simple, boundary issue.
+- (2) Sliding window: smooth, more accurate.
+- (3) Token bucket: allow bursts.
+- (4) Leaky bucket: smooth output.
+
+Storage: in-memory for single node; Redis for distributed. Key: user_id or IP. Implementation: Redis INCR with TTL, or sliding window log. Return 429 with Retry-After.
 
 ### Complex
 

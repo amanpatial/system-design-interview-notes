@@ -21,7 +21,14 @@
 
 **Q: Explain OAuth 2.0 authorization code flow. Why use authorization code instead of returning tokens directly?**
 
-**A:** Flow: (1) User redirected to auth server. (2) User logs in, approves. (3) Auth server redirects back with authorization code (not token). (4) Client exchanges code for token server-side. Why: code is short-lived, used once; tokens never sent in URL (visible in history, Referer). Safer than implicit flow where token is in redirect URL.
+**A:** Flow:
+
+- (1) User redirected to auth server.
+- (2) User logs in, approves.
+- (3) Auth server redirects back with authorization code (not token).
+- (4) Client exchanges code for token server-side.
+
+Why: code is short-lived, used once; tokens never sent in URL (visible in history, Referer). Safer than implicit flow where token is in redirect URL.
 
 ### Medium
 
@@ -33,7 +40,14 @@
 
 **Q: A JWT is compromised. How do you revoke it before expiry? Design a solution that scales.**
 
-**A:** JWTs are stateless; server doesn't track them. Options: (1) Short expiry (e.g., 15 min) + refresh token (stored, revocable). (2) Token blocklist: store revoked token IDs in Redis; check on each request. Doesn't scale for many revocations. (3) Version/epoch: include version in JWT; revoke by bumping version; all old tokens invalid. (4) Short-lived + sliding refresh: compromise has limited window. Best: short-lived JWT + revocable refresh token; for critical actions, re-auth or check blocklist.
+**A:** JWTs are stateless; server doesn't track them. Options:
+
+- (1) Short expiry (e.g., 15 min) + refresh token (stored, revocable).
+- (2) Token blocklist: store revoked token IDs in Redis; check on each request. Doesn't scale for many revocations.
+- (3) Version/epoch: include version in JWT; revoke by bumping version; all old tokens invalid.
+- (4) Short-lived + sliding refresh: compromise has limited window.
+
+Best: short-lived JWT + revocable refresh token; for critical actions, re-auth or check blocklist.
 
 ---
 

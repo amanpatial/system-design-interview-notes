@@ -23,13 +23,26 @@ Consistency models define what clients observe when reading data. Strong consist
 
 **Q: Explain read-your-writes consistency. How would you implement it in a system with read replicas?**
 
-**A:** Read-your-writes: after a write, the same user's subsequent reads see that write. With replicas, read might hit a replica that hasn't received the write yet. Implementation: (1) Route reads for same user to primary until replication lag is acceptable. (2) Use session affinity: same user → same replica, with replication tracking. (3) Wait for replication: after write, wait for replica to catch up before serving reads (increases latency). (4) Version/timestamp: reject read if replica is behind; retry or read from primary.
+**A:** Read-your-writes: after a write, the same user's subsequent reads see that write. With replicas, read might hit a replica that hasn't received the write yet. Implementation:
+
+- (1) Route reads for same user to primary until replication lag is acceptable.
+- (2) Use session affinity: same user → same replica, with replication tracking.
+- (3) Wait for replication: after write, wait for replica to catch up before serving reads (increases latency).
+- (4) Version/timestamp: reject read if replica is behind; retry or read from primary.
 
 ### Complex
 
 **Q: A system uses eventual consistency. Users report seeing duplicate transactions after retries. How do you fix this while preserving availability?**
 
-**A:** Root cause: retries create duplicate operations. Solutions: (1) Idempotency keys: client sends unique key per logical operation; server deduplicates. (2) Idempotent writes: design operations so replay is safe (e.g., "add $10" vs "set balance to $110"). (3) Distributed lock or conditional writes: "update if version = X" to prevent overwrites. (4) Transaction log: append-only log with dedup; async apply. (5) Compensation: detect duplicates (e.g., via idempotency key), reverse or merge. Best: idempotency keys at API layer + idempotent design of business logic.
+**A:** Root cause: retries create duplicate operations. Solutions:
+
+- (1) Idempotency keys: client sends unique key per logical operation; server deduplicates.
+- (2) Idempotent writes: design operations so replay is safe (e.g., "add $10" vs "set balance to $110").
+- (3) Distributed lock or conditional writes: "update if version = X" to prevent overwrites.
+- (4) Transaction log: append-only log with dedup; async apply.
+- (5) Compensation: detect duplicates (e.g., via idempotency key), reverse or merge.
+
+Best: idempotency keys at API layer + idempotent design of business logic.
 
 ---
 

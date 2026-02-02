@@ -16,7 +16,12 @@ Message queues provide point-to-point delivery: one consumer processes each mess
 
 **Q: Design an order processing system where: order placed → validate inventory → charge payment → ship. What if a step fails mid-flow? How do you ensure consistency?**
 
-**A:** Use saga pattern: each step is a local transaction + compensating action on failure. Flow: Place order → Reserve inventory → Charge payment → Create shipment. If charge fails: release inventory. If ship fails: refund payment, release inventory. Implement via: (1) Choreography: each service publishes events; others react and compensate. (2) Orchestration: central coordinator calls services and triggers compensation. Ensure idempotency at each step. Use dead-letter queue for retries; eventual resolution (manual or automated).
+**A:** Use saga pattern: each step is a local transaction + compensating action on failure. Flow: Place order → Reserve inventory → Charge payment → Create shipment. If charge fails: release inventory. If ship fails: refund payment, release inventory. Implement via:
+
+- (1) Choreography: each service publishes events; others react and compensate.
+- (2) Orchestration: central coordinator calls services and triggers compensation.
+
+Ensure idempotency at each step. Use dead-letter queue for retries; eventual resolution (manual or automated).
 
 ---
 

@@ -23,7 +23,15 @@
 
 **Q: How do you handle stateful workloads (e.g., WebSocket servers, gaming servers) in a horizontally scaled environment?**
 
-**A:** Options: (1) Sticky sessions: load balancer routes same client to same instance; instance holds state. Risk: instance failure loses state. (2) Externalize state: Redis/DB for session; any instance can serve. (3) Sharding: assign users to instances by user_id; client reconnects to same shard. (4) State replication: replicate to backup (complex). (5) Accept reconnection: design for reconnect and state rebuild. Often: sticky sessions + externalized critical state + graceful shutdown with drain.
+**A:** Options:
+
+- (1) Sticky sessions: load balancer routes same client to same instance; instance holds state. Risk: instance failure loses state.
+- (2) Externalize state: Redis/DB for session; any instance can serve.
+- (3) Sharding: assign users to instances by user_id; client reconnects to same shard.
+- (4) State replication: replicate to backup (complex).
+- (5) Accept reconnection: design for reconnect and state rebuild.
+
+Often: sticky sessions + externalized critical state + graceful shutdown with drain.
 
 ---
 

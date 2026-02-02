@@ -16,7 +16,16 @@
 
 **Q: A production incident occurs. Walk through your debugging process using logs, metrics, and traces. How do you correlate them?**
 
-**A:** (1) Start with metrics: when did latency/errors spike? Which service? (2) Traces: find slow or failed traces in that window; identify bottleneck span. (3) Logs: filter by trace ID for full context; look for errors. (4) Correlate: trace ID in logs and traces; timestamp alignment. (5) Dependency: check downstream services in trace. (6) Correlate with deployments: time of change. Use correlated IDs (trace_id, request_id) across all three pillars.
+**A:**
+
+- (1) Start with metrics: when did latency/errors spike? Which service?
+- (2) Traces: find slow or failed traces in that window; identify bottleneck span.
+- (3) Logs: filter by trace ID for full context; look for errors.
+- (4) Correlate: trace ID in logs and traces; timestamp alignment.
+- (5) Dependency: check downstream services in trace.
+- (6) Correlate with deployments: time of change.
+
+Use correlated IDs (trace_id, request_id) across all three pillars.
 
 ---
 

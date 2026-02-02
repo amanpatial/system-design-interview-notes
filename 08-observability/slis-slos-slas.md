@@ -22,13 +22,26 @@
 
 **Q: What makes a good SLI?**
 
-**A:** Good SLI: (1) Reflects user experience (e.g., latency as perceived by user). (2) Measurable automatically. (3) Actionable—we can improve it. (4) Aligned with business. Examples: availability (successful requests), latency (p99), error rate. Avoid vanity metrics that don't reflect user impact.
+**A:** Good SLI:
+
+- (1) Reflects user experience (e.g., latency as perceived by user).
+- (2) Measurable automatically.
+- (3) Actionable—we can improve it.
+- (4) Aligned with business.
+
+Examples: availability (successful requests), latency (p99), error rate. Avoid vanity metrics that don't reflect user impact.
 
 ### Medium
 
 **Q: Explain error budget. How do you use it for release decisions?**
 
-**A:** Error budget: 1 - SLO (e.g., 99.9% availability = 0.1% budget = ~43 min downtime/month). Consumed by incidents. Use: (1) If budget exhausted, freeze risky releases until budget resets. (2) Prioritize reliability work when budget is low. (3) Allow calculated risk: small releases consume little budget. Balances reliability and velocity.
+**A:** Error budget: 1 - SLO (e.g., 99.9% availability = 0.1% budget = ~43 min downtime/month). Consumed by incidents. Use:
+
+- (1) If budget exhausted, freeze risky releases until budget resets.
+- (2) Prioritize reliability work when budget is low.
+- (3) Allow calculated risk: small releases consume little budget.
+
+Balances reliability and velocity.
 
 ---
 

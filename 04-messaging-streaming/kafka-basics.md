@@ -22,11 +22,25 @@
 
 **Q: How does Kafka achieve high throughput? What are the tradeoffs?**
 
-**A:** Mechanisms: (1) Sequential disk I/O—log append is fast. (2) Zero-copy—kernel sends data without copying to user space. (3) Batching—producer and consumer batch messages. (4) Partitioning—parallelism per partition. (5) No per-message ACK—batch commit. Tradeoffs: higher latency for single messages (batching); ordering only per partition; more complex than simple queue; retention uses disk.
+**A:** Mechanisms:
+
+- (1) Sequential disk I/O—log append is fast.
+- (2) Zero-copy—kernel sends data without copying to user space.
+- (3) Batching—producer and consumer batch messages.
+- (4) Partitioning—parallelism per partition.
+- (5) No per-message ACK—batch commit.
+
+Tradeoffs: higher latency for single messages (batching); ordering only per partition; more complex than simple queue; retention uses disk.
 
 **Q: Explain exactly-once semantics in Kafka. What's required to achieve it?**
 
-**A:** Exactly-once needs: (1) Idempotent producer—deduplicate by producer ID + sequence. (2) Transactional writes—atomic write across partitions. (3) Read-process-write in consumer—consumer commits offset only after successful process and output write; use transactional producer to make consumer read and output write atomic. Requirements: Kafka 0.11+, idempotent producer enabled, transactional producer for consumer. Careful design to avoid duplicates from retries and reprocessing.
+**A:** Exactly-once needs:
+
+- (1) Idempotent producer—deduplicate by producer ID + sequence.
+- (2) Transactional writes—atomic write across partitions.
+- (3) Read-process-write in consumer—consumer commits offset only after successful process and output write; use transactional producer to make consumer read and output write atomic.
+
+Requirements: Kafka 0.11+, idempotent producer enabled, transactional producer for consumer. Careful design to avoid duplicates from retries and reprocessing.
 
 ### Complex
 
@@ -36,7 +50,23 @@
 
 **Q: A Kafka consumer falls behind (lag increases). What are the causes and how do you address them?**
 
-**A:** Causes: (1) Consumer too slow—processing is CPU/IO heavy. (2) Not enough consumers—fewer than partitions. (3) Uneven partition distribution—hot partitions. (4) Downstream slow—DB, API. (5) Large messages—serialization/deserialization cost. Solutions: (1) Scale consumers (up to partition count). (2) Optimize processing—async, batching, parallel within consumer. (3) Increase partition count (requires care; can't decrease easily). (4) Add more consumer instances. (5) Consider separate consumer group for batch processing. (6) Optimize downstream—cache, async writes. (7) If backlog is huge, consider rewriting consumer to process in parallel from multiple offsets (e.g., parallel batch jobs).
+**A:** Causes:
+
+- (1) Consumer too slow—processing is CPU/IO heavy.
+- (2) Not enough consumers—fewer than partitions.
+- (3) Uneven partition distribution—hot partitions.
+- (4) Downstream slow—DB, API.
+- (5) Large messages—serialization/deserialization cost.
+
+Solutions:
+
+- (1) Scale consumers (up to partition count).
+- (2) Optimize processing—async, batching, parallel within consumer.
+- (3) Increase partition count (requires care; can't decrease easily).
+- (4) Add more consumer instances.
+- (5) Consider separate consumer group for batch processing.
+- (6) Optimize downstream—cache, async writes.
+- (7) If backlog is huge, consider rewriting consumer to process in parallel from multiple offsets (e.g., parallel batch jobs).
 
 ---
 

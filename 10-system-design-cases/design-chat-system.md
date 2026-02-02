@@ -10,7 +10,14 @@ A chat system requires real-time delivery, scaling connections, message ordering
 
 **Q: What are the main challenges in designing a chat system? How would you approach presence (online/offline)?**
 
-**A:** Challenges: real-time delivery, scaling connections, message ordering, persistence. Presence: (1) Heartbeat from client; server tracks last seen. (2) Distribute presence via pub/sub (Redis, etc.). (3) Offline after N seconds without heartbeat. (4) Consider "typing" and "last seen" as extensions. Scale: connection manager (e.g., WebSocket servers) + message queue + persistence.
+**A:** Challenges: real-time delivery, scaling connections, message ordering, persistence. Presence:
+
+- (1) Heartbeat from client; server tracks last seen.
+- (2) Distribute presence via pub/sub (Redis, etc.).
+- (3) Offline after N seconds without heartbeat.
+- (4) Consider "typing" and "last seen" as extensions.
+
+Scale: connection manager (e.g., WebSocket servers) + message queue + persistence.
 
 ---
 

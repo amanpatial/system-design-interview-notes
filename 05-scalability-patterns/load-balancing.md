@@ -28,7 +28,15 @@
 
 **Q: A load balancer is a single point of failure. How do you make it highly available?**
 
-**A:** (1) Active-passive: standby LB; failover via health checks (e.g., VRRP, keepalived). (2) Active-active: multiple LBs; DNS round-robin or anycast; each can handle full load. (3) Cloud LB: use managed service (ALB, ELB) with multiple AZs. (4) DNS failover: multiple LB IPs; health-based DNS. (5) Eliminate LB: client-side load balancing (service mesh, client knows all endpoints). Tradeoff: complexity vs availability.
+**A:**
+
+- (1) Active-passive: standby LB; failover via health checks (e.g., VRRP, keepalived).
+- (2) Active-active: multiple LBs; DNS round-robin or anycast; each can handle full load.
+- (3) Cloud LB: use managed service (ALB, ELB) with multiple AZs.
+- (4) DNS failover: multiple LB IPs; health-based DNS.
+- (5) Eliminate LB: client-side load balancing (service mesh, client knows all endpoints).
+
+Tradeoff: complexity vs availability.
 
 ---
 
