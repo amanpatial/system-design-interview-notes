@@ -14,6 +14,13 @@ This repository contains my personal notes for system design interview preparati
 - Revise patterns daily
 - Practice design cases weekly
 
+## Interview Base
+
+**[INTERVIEW-BASE.md](./INTERVIEW-BASE.md)** — Comprehensive interview preparation guide for Senior Solution Architect:
+- Topic introductions and basic explanations for all 12 sections
+- Practical Q&A at Basic, Medium, and Complex levels
+- Maps to repository folder structure (00-foundations through 11-interview-playbook)
+
 ## Goal
 Build clarity, confidence, and structured thinking for system design interviews.
 
