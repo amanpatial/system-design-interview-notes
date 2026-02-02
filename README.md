@@ -41,4 +41,5 @@ Structured notes and reference material for system design interviews.
 - [09-cloud-design](./09-cloud-design/) — Cloud models, multi-region, disaster recovery, cost
 - [10-system-design-cases](./10-system-design-cases/) — URL shortener, rate limiter, chat, notifications, feed
 - [11-interview-playbook](./11-interview-playbook/) — Framework, common questions, tradeoffs, red flags
+- [12-enterprise-architecture-togaf](./12-enterprise-architecture-togaf/) — TOGAF 10 interview questions for Enterprise Architecture
 - [assets](./assets/) — Diagrams and images

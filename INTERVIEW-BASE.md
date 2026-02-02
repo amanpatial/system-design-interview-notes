@@ -19,6 +19,7 @@
 10. [09-Cloud Design](#09-cloud-design)
 11. [10-System Design Cases](#10-system-design-cases)
 12. [11-Interview Playbook](#11-interview-playbook)
+13. [12-Enterprise Architecture TOGAF](12-enterprise-architecture-togaf/README.md)
 
 ---
 
