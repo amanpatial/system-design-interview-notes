@@ -4,7 +4,7 @@ Sharding and partitioning are two of the most commonly confused concepts in syst
 At first glance, they may seem similar, and people often use them interchangeably. But they are not.
 Both are techniques to **divide and scale large databases**; however, they differ in how the data is divided.
 
-![Partitioning vs sharding overview](partition-sharding-1.jpeg)
+![Partitioning vs sharding overview](images/partition-sharding-1.jpeg)
 
 Simply put, partitioning typically means breaking down database tables within a single server while sharding is about distributing data across multiple servers.
 
@@ -24,7 +24,7 @@ Real-world examples with SQL and code
 Partitioning is the process of splitting a large database table (or index) into smaller, more manageable chunks called partitions, all within the same database instance.
 
 
-![Partitioning: single database instance](partition-sharding-2.png)
+![Partitioning: single database instance](images/partition-sharding-2.png)
 
 Each partition holds a subset of the data. This means the database can skip scanning the entire table and instead operate only on the relevant partition, which significantly improves performance for queries that filter on the partition key.
 
@@ -119,12 +119,12 @@ Vertical partitioning means splitting a table by columns. Different sets of colu
 Imagine a user_profile table that looks like this:
 
 
-![Vertical partitioning: user profile split by columns](partition-sharding-3.png)
+![Vertical partitioning: user profile split by columns](images/partition-sharding-3.png)
 
 You might split this table into two:
 
 
-![Vertical partitioning: core and extended tables](partition-sharding-4.png)
+![Vertical partitioning: core and extended tables](images/partition-sharding-4.png)
 
 Core user table: user_id, name, email
 
@@ -153,7 +153,7 @@ Let’s say, your users table grows to 1 million records and queries start to sl
 You could split it horizontally like this:
 
 
-![Horizontal partitioning: users by ID range](partition-sharding-5.jpeg)
+![Horizontal partitioning: users by ID range](images/partition-sharding-5.jpeg)
 
 Partition 1: Users with IDs from 1 to 100,000
 
@@ -332,7 +332,7 @@ Sharding is the process of splitting your data and distributing them across mult
 Each of these servers—called a shard—stores only a subset of the overall dataset.
 
 
-![Sharding: data across multiple servers](partition-sharding-6.jpeg)
+![Sharding: data across multiple servers](images/partition-sharding-6.jpeg)
 
 At its core, sharding also involves split (partition) of data. What sets it apart is what happens next: those partitions are distributed across multiple servers. That’s the key difference between sharding and traditional partitioning.
 
@@ -357,7 +357,7 @@ Shard Key (Partition Key): A column, or a combination of columns, used to decide
 Router / Application Logic: A mechanism that knows where to send queries or inserts. This could be built into your application logic or handled by a dedicated shard router or middleware layer.
 
 
-![Shard key and router](partition-sharding-7.jpeg)
+![Shard key and router](images/partition-sharding-7.jpeg)
 
 
 ### Central Metadata for Shard Mapping
@@ -425,7 +425,7 @@ Step 2: Choose a Sharding Strategy
 You opt for range-based sharding for simplicity.
 
 
-![Range-based sharding: user_id ranges](partition-sharding-8.jpeg)
+![Range-based sharding: user_id ranges](images/partition-sharding-8.jpeg)
 
 Shard A → Users with user_id from 1 to 25 million
 
@@ -450,7 +450,7 @@ Step 3: Store Metadata
 You now maintain a shard map in a central configuration service (like Redis or a metadata DB):
 
 
-![Shard map metadata](partition-sharding-9.png)
+![Shard map metadata](images/partition-sharding-9.png)
 
 This map is consulted during every query to figure out which shard to route to.
 
@@ -459,7 +459,7 @@ Step 4: Routing Queries
 When a user logs in, your backend does something like:
 
 
-![Routing queries to the correct shard](partition-sharding-10.png)
+![Routing queries to the correct shard](images/partition-sharding-10.png)
 
 Your application connects only to the relevant shard for that request. No need to scan across all shards.
 
